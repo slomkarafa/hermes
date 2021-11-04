@@ -25,4 +25,9 @@ public class HttpResponseAssertion extends AbstractAssert<HttpResponseAssertion,
         assertThat(error.getCode()).isEqualTo(errorCode);
         return this;
     }
+
+    public HttpResponseAssertion containsMessage(String msg) {
+        assertThat(actual.readEntity(String.class)).contains(msg);
+        return this;
+    }
 }
