@@ -2,7 +2,7 @@ package pl.allegro.tech.hermes.management.api;
 
 import com.wordnik.swagger.annotations.Api;
 import java.util.List;
-import javax.annotation.security.RolesAllowed;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,7 +32,7 @@ public class OfflineRetransmissionEndpoint {
 
     @POST
     @Consumes(APPLICATION_JSON)
-    public Response createRetransmissionTask(OfflineRetransmissionRequest request) {
+    public Response createRetransmissionTask(@Valid OfflineRetransmissionRequest request) {
         retransmissionService.createTask(request);
         return Response.status(Response.Status.CREATED).build();
     }
