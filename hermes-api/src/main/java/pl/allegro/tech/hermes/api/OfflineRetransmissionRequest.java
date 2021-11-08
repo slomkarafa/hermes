@@ -5,13 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.Instant;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 import pl.allegro.tech.hermes.api.jackson.InstantIsoDeserializer;
 import pl.allegro.tech.hermes.api.jackson.InstantIsoSerializer;
 
 public class OfflineRetransmissionRequest {
+    @NotEmpty
     private final String sourceTopic;
+    @NotEmpty
     private final String targetTopic;
+    @NotNull
     private final Instant startTimestamp;
+    @NotNull
     private final Instant endTimestamp;
 
     @JsonCreator
