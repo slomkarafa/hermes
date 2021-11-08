@@ -32,7 +32,6 @@ public class OfflineRetransmissionEndpoint {
 
     @POST
     @Consumes(APPLICATION_JSON)
-    @RolesAllowed({Roles.TOPIC_OWNER, Roles.ADMIN})
     public Response createRetransmissionTask(OfflineRetransmissionRequest request) {
         retransmissionService.createTask(request);
         return Response.status(Response.Status.CREATED).build();
