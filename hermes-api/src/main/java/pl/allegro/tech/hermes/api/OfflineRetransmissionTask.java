@@ -12,6 +12,7 @@ import pl.allegro.tech.hermes.api.jackson.InstantIsoSerializer;
 public class OfflineRetransmissionTask {
     private final String taskId;
     private final OfflineRetransmissionRequest request;
+    private final Instant createdAt;
 
     @JsonCreator
     public OfflineRetransmissionTask(
@@ -26,6 +27,7 @@ public class OfflineRetransmissionTask {
     public OfflineRetransmissionTask(String taskId, OfflineRetransmissionRequest request) {
         this.taskId = taskId;
         this.request = request;
+        this.createdAt = Instant.now();
     }
 
     public String getTaskId() {
@@ -48,6 +50,11 @@ public class OfflineRetransmissionTask {
     @JsonSerialize(using = InstantIsoSerializer.class)
     public Instant getEndTimestamp() {
         return request.getEndTimestamp();
+    }
+
+    @JsonSerialize(using = InstantIsoSerializer.class)
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
     @JsonIgnore
