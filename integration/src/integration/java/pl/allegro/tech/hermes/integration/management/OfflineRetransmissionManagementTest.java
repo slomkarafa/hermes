@@ -62,6 +62,29 @@ public class OfflineRetransmissionManagementTest extends IntegrationTest {
     }
 
     @Test
+    public void shouldReturnClientErrorWhenRequestingRetransmissionWithEmptyData() {
+        // given
+        Topic targetTopic = createTopic();
+
+        // when
+        OfflineRetransmissionRequest request = new OfflineRetransmissionRequest(
+                "",
+                "",
+                null,
+                null
+        );
+        Response response = management.offlineRetransmission().createRetransmissionTask(request);
+
+        // then
+        assertThat(response).hasStatus(Response.Status.BAD_REQUEST);
+        assertThat(response).containsMessages(
+                "sourceTopic may not be empty",
+                "targetTopic may not be empty",
+                "startTimestamp may not be null",
+                "endTimestamp may not be null");
+    }
+
+    @Test
     public void shouldReturnClientErrorWhenRequestingRetransmissionWithNotExistingSourceTopic() {
         // given
         Topic targetTopic = createTopic();

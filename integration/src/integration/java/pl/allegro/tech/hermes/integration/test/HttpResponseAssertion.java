@@ -1,5 +1,6 @@
 package pl.allegro.tech.hermes.integration.test;
 
+import java.util.Arrays;
 import org.assertj.core.api.AbstractAssert;
 import pl.allegro.tech.hermes.api.ErrorCode;
 import pl.allegro.tech.hermes.api.ErrorDescription;
@@ -30,4 +31,12 @@ public class HttpResponseAssertion extends AbstractAssert<HttpResponseAssertion,
         assertThat(actual.readEntity(String.class)).contains(msg);
         return this;
     }
+
+    public HttpResponseAssertion containsMessages(String ...messages) {
+        String responseBody = actual.readEntity(String.class);
+        assertThat(Arrays.stream(messages).allMatch(responseBody::contains)).isTrue();
+        return this;
+    }
+
+
 }
