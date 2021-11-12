@@ -3,10 +3,8 @@ package pl.allegro.tech.hermes.api;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.Instant;
-import pl.allegro.tech.hermes.api.jackson.InstantIsoDeserializer;
 import pl.allegro.tech.hermes.api.jackson.InstantIsoSerializer;
 
 public class OfflineRetransmissionTask {
@@ -19,8 +17,8 @@ public class OfflineRetransmissionTask {
             @JsonProperty("taskId") String taskId,
             @JsonProperty("sourceTopic") String sourceTopic,
             @JsonProperty("targetTopic") String targetTopic,
-            @JsonProperty("startTimestamp") @JsonDeserialize(using = InstantIsoDeserializer.class) Instant startTimestamp,
-            @JsonProperty("endTimestamp") @JsonDeserialize(using = InstantIsoDeserializer.class) Instant endTimestamp) {
+            @JsonProperty("startTimestamp") Instant startTimestamp,
+            @JsonProperty("endTimestamp") Instant endTimestamp) {
         this(taskId, new OfflineRetransmissionRequest(sourceTopic, targetTopic, startTimestamp, endTimestamp));
     }
 
