@@ -252,7 +252,9 @@ topics.controller('TopicController', ['TOPIC_CONFIG', 'TopicRepository', 'TopicM
                 size: 'md',
                 backdrop: 'static',
                 resolve: {
-
+                    topic: function () {
+                        return $scope.topic;
+                    }
                 }
             });
         }

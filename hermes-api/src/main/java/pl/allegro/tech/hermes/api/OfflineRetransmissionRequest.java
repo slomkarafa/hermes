@@ -24,8 +24,8 @@ public class OfflineRetransmissionRequest {
     public OfflineRetransmissionRequest(
             @JsonProperty("sourceTopic") String sourceTopic,
             @JsonProperty("targetTopic") String targetTopic,
-            @JsonProperty("startTimestamp") @JsonDeserialize(using = InstantIsoDeserializer.class) Instant startTimestamp,
-            @JsonProperty("endTimestamp") @JsonDeserialize(using = InstantIsoDeserializer.class) Instant endTimestamp) {
+            @JsonProperty("startTimestamp") Instant startTimestamp,
+            @JsonProperty("endTimestamp") Instant endTimestamp) {
         this.sourceTopic = sourceTopic;
         this.targetTopic = targetTopic;
         this.startTimestamp = startTimestamp;

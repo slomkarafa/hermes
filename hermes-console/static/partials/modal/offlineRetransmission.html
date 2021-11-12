@@ -8,13 +8,15 @@
                 <label for="targetTopic" class="control-label col-md-3 pull-left">Target topic</label>
                 <div class="input-group col-md-8 pull-left">
                     <input class="form-control" id="targetTopic" required name="targetTopic"
-                           placeholder="target topic" ng-model="retransmission.targetTopic"/>
+                           placeholder="target.topic.full.name" ng-model="retransmissionRequest.targetTopic"/>
                 </div>
             </div>
             <div class="form-group row {{retransmissionForm.startTimestamp.$valid ? '' : 'has-error'}}">
                 <label for="startTimestamp" class="control-label col-md-3 pull-left">Start timestamp</label>
                 <div class="input-group date col-md-8 pull-left">
-                    <input type="text" class="form-control" placeholder="start..." id="startTimestamp" calendar days-back="daysBack"/>
+                    <input type="text" class="form-control" required ng-model="retransmissionRequest.startTimestamp"
+                           placeholder="start..." id="startTimestamp" name="startTimestamp" calendar
+                           days-back="calendarDaysBack"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
@@ -23,7 +25,8 @@
             <div class="form-group row {{retransmissionForm.endTimestamp.$valid ? '' : 'has-error'}}">
                 <label for="endTimestamp" class="control-label col-md-3 pull-left">End timestamp</label>
                 <div class="input-group date col-md-8 pull-left">
-                    <input type="text" class="form-control" placeholder="end..." id="endTimestamp" calendar days-back="daysBack"/>
+                    <input type="text" class="form-control" required ng-model="retransmissionRequest.endTimestamp"
+                           placeholder="end..." id="endTimestamp" name="endTimestamp" calendar days-back="calendarDaysBack"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
@@ -32,7 +35,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-disabled="retransmissionForm.$invalid" ng-click="offlineRetransmission()">
+        <button class="btn btn-primary" ng-disabled="retransmissionForm.$invalid" ng-click="createTask()">
             Retransmit
         </button>
         <button class="btn btn-warning" ng-click="$dismiss()">Cancel</button>

@@ -2,6 +2,7 @@ var directives = angular.module('hermes.directives', []);
 
 directives.directive('calendar', [function () {
   return {
+    require: 'ngModel',
     link: function (scope, elem, attrs) {
       scope.$watch(function () {
         return scope.$eval(attrs.daysBack);
@@ -9,13 +10,16 @@ directives.directive('calendar', [function () {
         const startDate = moment().subtract(parseInt(value), "days");
         const endDate = moment().add(1, "second");
 
-        $('#' + attrs.id).datetimepicker({
+        let idSelector = `#${attrs.id}`;
+        $(idSelector).datetimepicker({
           format: "YYYY-MM-DDTHH:mm:ssZ",
           ignoreReadonly: true,
           useCurrent: true,
           minDate: startDate,
           maxDate: endDate,
-          sideBySide: true
+          sideBySide: true,
+        }).on('dp.change', function () {
+          $(idSelector).change();
         });
       });
     }
