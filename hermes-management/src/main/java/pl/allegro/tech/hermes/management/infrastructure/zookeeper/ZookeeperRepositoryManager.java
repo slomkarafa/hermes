@@ -63,7 +63,7 @@ public class ZookeeperRepositoryManager implements RepositoryManager {
     private final Map<String, UndeliveredMessageLog> undeliveredMessageLogsByDc = new HashMap<>();
     private final Map<String, AdminTool> adminToolByDc = new HashMap<>();
     private final Map<String, ReadinessRepository> readinessRepositoriesByDc = new HashMap<>();
-    private final Map<String, ZookeeperOfflineRetransmissionRepository> offlineRetransmissionRepositoriesByDc = new HashMap<>();
+    private final Map<String, OfflineRetransmissionRepository> offlineRetransmissionRepositoriesByDc = new HashMap<>();
 
     public ZookeeperRepositoryManager(ZookeeperClientManager clientManager,
                                       DatacenterNameProvider datacenterNameProvider,
