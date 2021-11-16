@@ -209,14 +209,15 @@ You can control slowing down overall [sending speed](#rate-limiting) only when r
 depending on optional **Retry-After** header returned from subscription endpoint, with the amount of seconds to backoff.
 Keep in mind, that sending speed will slow down if response won't contain **Retry-After** header. Also, when you set
 **retryClientErrors** flag to true on subscription, any request with **4xx** code will be retried with slowing down 
-overall sending speed (except **429**, see above). To be sure, take a look at the below table:
+overall sending speed. To be sure, take a look at the below table:
 
 | status           | retryClientErrors flag | Retry-After header | retry message | slow down sending speed |
 |------------------|------------------------|--------------------|---------------|-------------------------|
 | 4xx (except 429) | false                  | not applicable     | no            | no                      |
 | 4xx (except 429) | true                   | not applicable     | yes           | yes                     |
-| 429              | not applicable         | no                 | yes           | yes                     |
-| 429              | not applicable         | yes                | yes           | no                      |
+| 429              | false                  | not applicable     | yes           | yes                     |
+| 429              | true                   | no                 | yes           | yes                     |
+| 429              | true                   | yes                | yes           | no                      |
 | 5xx (except 503) | not applicable         | not applicable     | yes           | yes                     |
 | 503              | not applicable         | no                 | yes           | yes                     |
 | 503              | not applicable         | yes                | yes           | no                      |             
